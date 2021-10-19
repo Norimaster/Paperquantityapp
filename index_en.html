@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+
+  <title>Document</title>
+
+</head>
+
+<body class="p-2 text-dark bg-opacity-10">
+  <div>
+    <dropdown>
+      <input id="toggle2" type="checkbox">
+      <label for="toggle2" class="animate" id="languageSelector">English<i class="fa fa-list float-right"></i></label>
+      <ul class="animate">
+        <li class="animate"><a href="#hun" data-reload>Magyar</a></li>
+        <li class="animate"><a href="#eng" data-reload>English</a></li>
+      </ul>
+    </dropdown>
+  </div>
+  <div class="container-md" style="max-width:570px" id="card">
+    <div class="card shadow-lg" style="border-radius:4px; border:none; max-width:570px">
+      <div class="card-body banner">
+        <h4 class="card-title mb-3 text-uppercase" style="font-weight:700" id='calculationtitle'>Calculate your material
+          need!
+        </h4>
+        <!-- form -->
+        <form id="calculation-form" onsubmit="return false">
+
+
+          <!-- book size -->
+          <div class="container">
+            <div class="row g-2">
+              <div class="col-sm mb-3 form-floating">
+                <select class="form-select" id="sizeofbook" name='sizeofbook'>
+                  <option Selected></option>
+                </select>
+                <label for="sizeofbook" id='languageBooksize'>Book size</label>
+              </div>
+
+              <!-- book width -->
+              <div class="col-sm mb-3 form-floating" id="width" style="display:none">
+                <input class="form-control" type="number" name="booksizewidth" min="0" id="booksizewidth"
+                  class="form-control" placeholder="" required />
+                <label for="booksizewidth" id='languageWidth'>Width in cm</label>
+              </div>
+
+              <!-- book height -->
+              <div class="col-sm mb-3 form-floating" id="height" style="display:none">
+                <input class="form-control" type="number" name="booksizeheight" min="0" id="booksizeheight"
+                  class="form-control" placeholder="" required />
+                <label for="booksizeheight" id='languageHeight'>Height in cm</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="container">
+            <div class="row g-2">
+              <!-- spine -->
+              <div class="col-sm mb-3 form-group form-floating">
+                <input type="number" name="booksizespine" min="0" id="booksizespine" class="form-control" placeholder=""
+                  required />
+                <label for="booksizespine" id='languageSpine'>Spine in cm</label>
+              </div>
+              <!-- quantity -->
+              <div class="col-sm mb-3 form-group form-floating">
+                <input type="number" name="bookquantity" min="1" id="bookquantity" class="form-control" placeholder=""
+                  required />
+                <label for="bookquantity" id='languageQuantity'>Quantity of Book</label>
+              </div>
+            </div>
+            <!-- material -->
+            <div class="col-sm mb-3 form-floating">
+              <select class="form-select" id="typeOfMaterial" name='typeOfMaterial'>
+                <option Selected></option>
+              </select>
+              <label for="typeOfMaterial" id='languageMaterial'>Material</label>
+            </div>
+            <!-- button -->
+            <div class="mb-3 d-grid gap-2">
+              <button class="btn btn-secondary"
+                style="background-color: #34373a ; font-weight: 700;text-transform: uppercase" id="calculate"
+                type="button">Calculate</button>
+              <!-- calculation results -->
+              <input class="form-control text-center" type="text" id="needInMeter" id="basic-addon1" disabled>
+            </div>
+
+          </div>
+        </form>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+      crossorigin="anonymous"></script>
+    <script src="bundle.js"></script>
+    <script src="language.js"></script>
+
+
+</body>
+
+</html>
