@@ -6,18 +6,25 @@ const {
   getWidthPerBookPerPc,
   getHeightPerBookPerPc,
 } = require('./helpers')
+const { MATERIAL } = require('./data')
 const {
-  sizeOfBookNamesEN,
-  MATERIAL,
-  materialNamesEN,
-  materialNamesHU,
-  populateMaterialSelectorHU,
-  populateMaterialSelectorEN,
-  populateSizeSelectorHU,
-  populateSizeSelectorEN,
-  sizeOfBookNamesHU,
-} = require('./data')
+  languageResult,
+  updatePageLanguage,
+  populateLanguageSelector,
+} = require('./translation')
+populateLanguageSelector()
+
 document.getElementById('needInMeter').style.visibility = 'hidden'
+const languageSelector = document.getElementById('languageSelector')
+
+languageSelector.addEventListener('change', (event) => {
+  const { value: language } = event.target
+  console.log('😸😸😸😸😸😸 Change language', { language })
+  updatePageLanguage(language)
+})
+
+updatePageLanguage(languageSelector.value)
+
 //How many pieces of sheets the customer needs to order
 const getNeedInSheets = () => {
   let result = Math.round(
@@ -39,91 +46,35 @@ const getNeedInMeter = () => {
 const chooseSize = document.getElementById('sizeofbook')
 chooseSize.addEventListener('change', getSizeOfBook)
 
-//language field translations
-var language = {
-  hun: {
-    calctitle: 'Papír szükséglet',
-    langBooksize: 'Méret',
-    langWidth: 'Szélesség (cm)',
-    langHeight: 'Hosszúság (cm)',
-    langSpine: 'Gerinc (cm)',
-    langQuantity: 'Mennyiség (db)',
-    langMaterial: 'Anyag',
-    langSelector: 'Magyar',
-  },
-}
-const resultTextEn = 'Your need is'
-const resultTextHu = 'A rendelési mennyiség'
-const resultPiecesEn = 'piece(s).'
-const resultMeterEn = 'meter.'
-const resultPiecesHu = 'darab.'
-const resultMeterHu = 'méter.'
-
-//define language via window hash
-
-if (window.location.hash) {
-  if (window.location.hash === '#hun') {
-    populateMaterialSelectorHU()
-    populateSizeSelectorHU()
-    if (window.location.hash) {
-      if (window.location.hash === '#hun') {
-        ;(calculationtitle.textContent = language.hun.calctitle),
-          (languageBooksize.textContent = language.hun.langBooksize),
-          (languageWidth.textContent = language.hun.langWidth),
-          (languageHeight.textContent = language.hun.langHeight),
-          (languageSpine.textContent = language.hun.langSpine),
-          (languageQuantity.textContent = language.hun.langQuantity),
-          (languageMaterial.textContent = language.hun.langMaterial),
-          (languageSelector.textContent = language.hun.langSelector)
-      }
-    }
-  } else {
-    populateMaterialSelectorEN()
-    populateSizeSelectorEN()
-  }
-} else {
-  populateMaterialSelectorEN()
-  populateSizeSelectorEN()
-}
-
 // Final function to populate the result field
 const calculate = () => {
   const material = document.getElementById('typeOfMaterial').value
+  const language = languageSelector.value
   let result
   if (getNeedInMeter() === Infinity || getNeedInSheets() === Infinity) {
     document.getElementById('needInMeter').style.visibility = 'hidden'
-    alert('The book is too large for the selected material!')
+    alert(`${languageResult[language].alert}`)
   } else {
     switch (material) {
       case MATERIAL.SHEET_LONGGRAIN:
-      case MATERIAL.SHEET_SHORTGRAIN: {
-        // It calculates the need for sheets if sheets are selected
-        if (window.location.hash) {
-          if (window.location.hash === '#hun') {
-            result = `${resultTextHu} ${getNeedInSheets()} ${resultPiecesHu}`
-          } else {
-            result = `${resultTextEn} ${getNeedInSheets()} ${resultPiecesEn}`
-          }
-        } else {
-          result = `${resultTextEn} ${getNeedInSheets()} ${resultPiecesEn}`
-        }
-        document.getElementById('needInMeter').style.visibility = 'visible'
-        break
-      }
-      default: {
-        // It calculates the need for running meter if a specific material is selected
-        document.getElementById('needInMeter').style.visibility = 'visible'
-        if (window.location.hash) {
-          if (window.location.hash === '#hun') {
-            result = `${resultTextHu} ${getNeedInMeter()} ${resultMeterHu}`
-          } else {
-            result = `${resultTextEn} ${getNeedInMeter()} ${resultMeterEn}`
-          }
-        } else {
-          result = `${resultTextEn} ${getNeedInMeter()} ${resultMeterEn}`
+      case MATERIAL.SHEET_SHORTGRAIN:
+        {
+          // It calculates the need for sheets if sheets are selected
+          document.getElementById('needInMeter').style.visibility = 'visible'
+          result = `${
+            languageResult[language].resultText
+          } ${getNeedInSheets()} ${languageResult[language].resultPieces}`
         }
         break
-      }
+      default:
+        {
+          // It calculates the need for running meter if a specific material is selected
+          document.getElementById('needInMeter').style.visibility = 'visible'
+          result = `${
+            languageResult[language].resultText
+          } ${getNeedInMeter()} ${languageResult[language].resultMeter}`
+        }
+        break
     }
   }
   document.getElementById('needInMeter').value = result

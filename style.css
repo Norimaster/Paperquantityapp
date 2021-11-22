@@ -7,6 +7,11 @@ body {
   font-family: 'Arial', sans-serif;
   background: #fff;
 }
+button {
+  background-color: #34373a;
+  font-weight: 700;
+  text-transform: uppercase;
+}
 
 #card {
   height: 100vh;
@@ -69,19 +74,4 @@ dropdown input:checked ~ ul {
   visibility: visible;
   opacity: 1;
   top: 0;
-}
-
-.animate {
-  -webkit-transition: all 0.3s;
-  -moz-transition: all 0.3s;
-  -ms-transition: all 0.3s;
-  -ms-transition: all 0.3s;
-  transition: all 0.3s;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  /* Chrome and Safari */
-  -moz-backface-visibility: hidden;
-  /* Firefox */
-  -ms-backface-visibility: hidden;
-  /* Internet Explorer */
 }
