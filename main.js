@@ -1,4 +1,3 @@
-// Imports
 const {
   getSizeOfBook,
   getHeight,
@@ -12,17 +11,17 @@ const {
   updatePageLanguage,
   populateLanguageSelector,
 } = require('./translation')
+
 populateLanguageSelector()
 
 document.getElementById('needInMeter').style.visibility = 'hidden'
-const languageSelector = document.getElementById('languageSelector')
 
+const languageSelector = document.getElementById('languageSelector')
 languageSelector.addEventListener('change', (event) => {
   const { value: language } = event.target
   console.log('😸😸😸😸😸😸 Change language', { language })
   updatePageLanguage(language)
 })
-
 updatePageLanguage(languageSelector.value)
 
 //How many pieces of sheets the customer needs to order
@@ -43,6 +42,7 @@ const getNeedInMeter = () => {
   )
   return needRunningmeter_plus10percent
 }
+
 const chooseSize = document.getElementById('sizeofbook')
 chooseSize.addEventListener('change', getSizeOfBook)
 

@@ -106,7 +106,6 @@ function updateFormFields(language) {
 
 function populateSizeSelector(language) {
   const sizeSelector = document.querySelector('select#sizeofbook')
-  // Remove all child nodes
   while (sizeSelector.children.length > 1) {
     sizeSelector.removeChild(sizeSelector.lastChild)
   }
@@ -122,7 +121,6 @@ function populateSizeSelector(language) {
 
 function populateMaterialSelector(language) {
   const materialSelector = document.querySelector('select#typeOfMaterial')
-  // Remove all child nodes
   while (materialSelector.children.length > 1) {
     materialSelector.removeChild(materialSelector.lastChild)
   }
@@ -139,9 +137,7 @@ function populateMaterialSelector(language) {
 
 function populateLanguageSelector() {
   const languageSelector = document.querySelector('select#languageSelector')
-  // Remove all child nodes
   for (const [languageId, languageName] of Object.entries(languageNames)) {
-    // <option value="balacron_fauxleather">Balacron faux leather</option>
     const option = document.createElement('option')
     option.value = languageId
     option.innerHTML = languageName

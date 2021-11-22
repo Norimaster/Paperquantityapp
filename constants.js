@@ -1,5 +1,0 @@
-const DEFAULT_LANGUAGE = AVAILABLE_LANGUAGES.HU
-
-module.exports = {
-  DEFAULT_LANGUAGE,
-}
