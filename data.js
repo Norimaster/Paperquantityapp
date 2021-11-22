@@ -52,6 +52,7 @@ const MATERIAL = {
   SHEET_LONGGRAIN: 'sheet_longgrain',
   SHEET_SHORTGRAIN: 'sheet_shortgrain',
 }
+
 const AVAILABLE_LANGUAGES = { EN: 'en', HU: 'hu' }
 const languageNames = {
   [AVAILABLE_LANGUAGES.HU]: 'Magyar',
@@ -63,5 +64,4 @@ module.exports = {
   MATERIAL,
   sizes,
   languageNames,
-  AVAILABLE_LANGUAGES,
 }
